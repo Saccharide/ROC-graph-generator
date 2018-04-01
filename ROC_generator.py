@@ -38,16 +38,17 @@ def graph(attack_packets, benign_packets):
 
 
         # Printing for debugging:
-        print("Current iteration t = ",t)        
+        # print("Current iteration t = ",t)        
         print("# of True Positive  = ", len(true_positive))
         print("True Positive Rate  = ", true_positive_rate)
         print("")
         print("# of False Positive = ", len(false_positive))
         print("False Positive Rate = ", false_positive_rate)
-        print("-------------------------------------------")
+        print("-------------------------------------------") 
 
 
-
+    print("True Positive list = ", true_positives_list)
+    print("False Postive list = ", false_positives_list)
     # Graph them with matplotlib
     plt.scatter(false_positives_list, true_positives_list, clip_on=False)
     plt.plot(false_positives_list, true_positives_list, clip_on=False)
