@@ -36,16 +36,35 @@ def graph(attack_packets, benign_packets):
         true_positives_list.append(true_positive_rate)
         false_positives_list.append(false_positive_rate)
 
-        print("True Positive Rate = ", true_positive_rate)
-        
+
+        # Printing for debugging:
+        print("Current iteration t = ",t)        
+        print("# of True Positive  = ", len(true_positive))
+        print("True Positive Rate  = ", true_positive_rate)
+        print("")
+        print("# of False Positive = ", len(false_positive))
         print("False Positive Rate = ", false_positive_rate)
+        print("-------------------------------------------")
+
+
 
     # Graph them with matplotlib
-    plt.scatter(false_positives_list, true_positives_list)
-    plt.plot(false_positives_list, true_positives_list)
+    plt.scatter(false_positives_list, true_positives_list, clip_on=False)
+    plt.plot(false_positives_list, true_positives_list, clip_on=False)
+    
+    # Adding label to the graph
+    plt.suptitle('ROC Graph')
+    plt.xlabel('False Positive Rate', fontsize = 18)
+    plt.ylabel('True Positive Rate' , fontsize = 18)
+    
+    # Sets up the x and y limits
+    axes = plt.gca()
+    axes.set_ylim([0.0,1.0])
+    axes.set_xlim([0.0,1.0])
+
     plt.show()
 
-attack_packets = [1,1,2,3,5,8]
-benign_packets = [2,2,4,6,6,7,8,9]
+attack_packets = [1,2,2,3,3,6,6,10]
+benign_packets = [3,3,5,6,7,7,8,8,8,9]
 
 graph(attack_packets, benign_packets)
